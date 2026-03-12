@@ -2,7 +2,8 @@
 
 import { Transform, TransformFnParams } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Exercicio } from '../../exercicio/entities/exercicio.entity';
 
 @Entity()
 export class Categoria {
@@ -18,4 +19,7 @@ export class Categoria {
   @IsNotEmpty()
   @Column({ type: 'varchar', length: 1000 })
   descricao: string;
+
+  @OneToMany(()=> Exercicio,(exercicio) => exercicio.categoria)
+  exercicio:Exercicio 
 }

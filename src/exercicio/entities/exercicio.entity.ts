@@ -1,6 +1,7 @@
 import { IsEmail, IsNotEmpty, IsNumber, Length, Min, MinLength } from "class-validator"
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Transform, TransformFnParams } from "class-transformer"
+import { Categoria } from "../../categoria/entities/categoria.entity"
 
 
 
@@ -32,5 +33,7 @@ export class Exercicio {
     @Column({ length: 5000 })
     foto: string
 
+    @ManyToOne(()=> Categoria,(categoria) => categoria.exercicio,{onDelete: "CASCADE"})
+    categoria:Categoria
 
 }
