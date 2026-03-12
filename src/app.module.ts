@@ -1,5 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ExercicioController } from './exercicio/controllers/exercicio.controller';
+import { ExercicioModule } from './exercicio/exercicio.modules';
+import { Exercicio } from './exercicio/entities/exercicio.entity';
 
 
 @Module({
@@ -9,12 +12,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       port:3306,
       username: 'root',
-      password: 'root',
+      password: 'root123',
       database: 'db_fitcare',
-      entities: [],
+      entities: [Exercicio],
       synchronize: true,
       logging: true,
-    }),
+    }),ExercicioModule
     
   ],
   controllers: [],
