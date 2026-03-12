@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { UsuarioModule } from './usuario/usuario.modules';
 
 
 @Module({
@@ -11,10 +13,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'root',
       database: 'db_fitcare',
-      entities: [],
+      entities: [Usuario],
       synchronize: true,
       logging: true,
     }),
+    UsuarioModule
     
   ],
   controllers: [],
