@@ -10,7 +10,7 @@ import { Exercicio } from './exercicio/entities/exercicio.entity';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port:3306,
+      port: 3306,
       username: 'root',
       password: 'root123',
       database: 'db_fitcare',
