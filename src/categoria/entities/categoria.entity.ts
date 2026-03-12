@@ -20,6 +20,7 @@ export class Categoria {
   @Column({ type: 'varchar', length: 1000 })
   descricao: string;
 
+  
   @OneToMany(()=> Exercicio,(exercicio) => exercicio.categoria)
-  exercicio:Exercicio 
+  exercicio:Exercicio[]; 
 }

@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put} from "@nestjs/common";
+import { Categoria } from "../entities/categoria.entity";
 import { CategoriaService } from "../services/categoria.services";
-import { Categoria } from "../categoria/entities/categoria.entity";
 
 
 

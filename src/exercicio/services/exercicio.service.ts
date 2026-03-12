@@ -13,14 +13,16 @@ export class ExercicioService {
     ) { }
 
     async findAll(): Promise<Exercicio[]> {
-        return await this.exercicioRepository.find();
+        return await this.exercicioRepository.find({
+            relations: {categoria: true} });
     }
 
     async findById(id: number): Promise<Exercicio> {
 
         const exercicio = await this.exercicioRepository.findOne({
-            where: { id }
-        });
+            where: { id },
+            relations: {categoria: true} });
+       
 
         if (!exercicio)
             throw new HttpException("Exercício não encontrado!", HttpStatus.NOT_FOUND);
@@ -33,8 +35,9 @@ export class ExercicioService {
     return await this.exercicioRepository.find({
         where: {
             tipo: ILike(`%${tipo}%`)
-        }
-    });
+        },
+        relations: {categoria: true} });
+
 }
 
     async create(exercicio: Exercicio): Promise<Exercicio> {

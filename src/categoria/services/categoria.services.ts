@@ -1,8 +1,7 @@
-import { Type } from './../../node_modules/@jest/reporters/node_modules/path-scurry/dist/commonjs/index.d';
-import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { DeleteResult, ILike, Repository } from "typeorm";
-import { Categoria } from "../categoria/entities/categoria.entity";
 import { InjectRepository } from "@nestjs/typeorm";
+import { Categoria } from '../entities/categoria.entity';
 
 @Injectable()
 export class CategoriaService{
@@ -11,13 +10,14 @@ export class CategoriaService{
         private categoriaRepository: Repository<Categoria>) {}
 
         async findAll(): Promise<Categoria[]> {
-            return this.categoriaRepository.find();
+            return this.categoriaRepository.find({relations: {exercicio: true} });
         }
 
         async findById(id: number): Promise<Categoria>{
 
         const categoria = await this.categoriaRepository.findOne({
             where: { id },
+            relations: {exercicio: true}
 
         })
         if (!categoria)
@@ -30,7 +30,8 @@ export class CategoriaService{
     async findAllByIntensidade(intensidade: string): Promise<Categoria[]>{
 
         return this.categoriaRepository.find({
-            where: { intensidade: ILike(`%${intensidade}%`) }
+            where: { intensidade: ILike(`%${intensidade}%`) },
+            relations: {exercicio: true}
         });
     }
 

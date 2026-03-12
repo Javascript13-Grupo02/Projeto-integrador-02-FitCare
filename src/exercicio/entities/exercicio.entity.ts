@@ -26,7 +26,7 @@ export class Exercicio {
 
     @Transform(({ value }: TransformFnParams) => value?.trim())
     @IsNotEmpty()
-    @Length(5, 100, { message: "O Nome deve ter entre 5 e 100 caracteres" })
+    @Length(1, 100, { message: "O Tipo deve ter entre 5 e 100 caracteres" })
     @Column({ length: 100, nullable: false })
     tipo: string
 
