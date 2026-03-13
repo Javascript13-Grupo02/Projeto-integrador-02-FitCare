@@ -12,6 +12,8 @@ export class UsuarioService {
 
 
     async findByUsuario(usuario: string): Promise<Usuario | null> {
+        if(!usuario)
+            throw new HttpException('Usuario não encontrado!', HttpStatus.NOT_FOUND);
         return await this.usuarioRepository.findOne({
             where: {
                 usuario: usuario
@@ -19,13 +21,6 @@ export class UsuarioService {
         })
     }
 
-    async findByNome(nome: string): Promise<Usuario[]> {
-        return await this.usuarioRepository.find({
-            where: {
-                nome: ILike(`%${nome}%`)
-            }
-        })
-    }
 
     async findAll(): Promise<Usuario[]> {
         return await this.usuarioRepository.find();

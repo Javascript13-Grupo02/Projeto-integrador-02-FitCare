@@ -41,10 +41,10 @@ export class UsuarioController {
         return this.usuarioService.calcularIMCUsuario(id)
     }
 
-    @Get('/nome/:nome')
+    @Get('/usuario/:usuario')
     @HttpCode(HttpStatus.OK)
-    findByNome(@Param('nome') nome: string) {
-        return this.usuarioService.findByNome(nome);
+    findByUsuario(@Param('usuario') usuario: string): Promise<Usuario | null> {
+        return this.usuarioService.findByUsuario(usuario);
     }
 
 }
