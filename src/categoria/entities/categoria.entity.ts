@@ -5,7 +5,7 @@ import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Exercicio } from '../../exercicio/entities/exercicio.entity';
 
-@Entity()
+@Entity('tb_categorias')
 export class Categoria {
   @PrimaryGeneratedColumn()
   id: number;

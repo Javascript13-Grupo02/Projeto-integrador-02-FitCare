@@ -12,7 +12,7 @@ export class CategoriaController{
         private readonly categoriaService: CategoriaService
     ){}
     
-    @Get()
+    @Get('/all')
     @HttpCode(HttpStatus.OK)
     findAll(): Promise<Categoria[]>{
         return this.categoriaService.findAll();

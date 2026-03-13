@@ -19,7 +19,7 @@ import { Categoria } from './categoria/entities/categoria.entity';
       password: 'root',
       database: 'db_fitcare',
       entities: [Exercicio, Usuario, Categoria],
-      synchronize: true,
+      synchronize: false,
       logging: false,
     }),ExercicioModule,
     UsuarioModule,
