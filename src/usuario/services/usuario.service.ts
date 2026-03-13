@@ -11,14 +11,18 @@ export class UsuarioService {
     ) { }
 
 
-    async findByUsuario(usuario: string): Promise<Usuario | null> {
-        if(!usuario)
-            throw new HttpException('Usuario não encontrado!', HttpStatus.NOT_FOUND);
-        return await this.usuarioRepository.findOne({
+    async findByUsuario(usuario: string): Promise<Usuario> {
+
+        const resultado = await this.usuarioRepository.findOne({
             where: {
                 usuario: usuario
             }
-        })
+        });
+
+        if (!resultado)
+            throw new HttpException('Usuario não encontrado!', HttpStatus.NOT_FOUND);
+
+        return resultado;
     }
 
 
@@ -43,13 +47,14 @@ export class UsuarioService {
 
     async create(usuario: Usuario): Promise<Usuario> {
 
-        const buscaUsuario = await this.findByUsuario(usuario.usuario);
+        const buscaUsuario = await this.usuarioRepository.findOne({
+            where: { usuario: usuario.usuario }
+        });
 
         if (buscaUsuario)
             throw new HttpException("O Usuario já existe!", HttpStatus.BAD_REQUEST);
 
         return await this.usuarioRepository.save(usuario);
-
     }
 
     async update(usuario: Usuario): Promise<Usuario> {
